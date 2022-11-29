@@ -1,7 +1,7 @@
 {
   "name": "vue-drag-menu-plus",
   "description": "可拖拽菜单 vue3版",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "author": "aFei <1106728884@qq.com>",
   "license": "MIT",
   "main": "dist/vue-drag-menu-plus.umd.js",

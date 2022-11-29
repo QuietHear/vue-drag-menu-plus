@@ -4,8 +4,84 @@
 */
 /*
  * @LastEditors: aFei
- * @LastEditTime: 2022-11-17 14:49:24
+ * @LastEditTime: 2022-11-29 18:00:49
 */
 .vue-drag-menu-plus {
- 
+  --menu-item-width : 60px;
+  --menu-item-height: 60px;
+  position          : fixed;
+  margin            : auto;
+  left              : 0;
+  right             : 0;
+  top               : 0;
+  bottom            : 0;
+  width             : 1px;
+  height            : 1px;
+  z-index           : 10;
+
+  // 移动时添加浮层
+  &.move-ing {
+    &::before {
+      content    : '';
+      position   : absolute;
+      z-index    : -1;
+      width      : 100vw;
+      height     : 100vh;
+      left       : 0;
+      top        : 0;
+      transform  : translate(-50%, -50%);
+      user-select: none;
+    }
+  }
+
+  .menu-item {
+    width          : var(--menu-item-width);
+    height         : var(--menu-item-height);
+    display        : flex;
+    justify-content: center;
+    align-items    : center;
+    border-radius  : 50%;
+    position       : absolute;
+    animation      : all ease-in-out .1s;
+    cursor         : pointer;
+
+    .icon-insert {
+      background: url("source/source.png") no-repeat;
+    }
+
+    //设置
+    .icon-setting {
+      width              : 46px;
+      height             : 46px;
+      background-position: -276px -614px;
+    }
+
+    //个人中心
+    .icon-myCenter {
+      width              : 39px;
+      height             : 43px;
+      background-position: -752px -1849px;
+    }
+
+    //通知
+    .icon-notice {
+      width              : 39px;
+      height             : 45px;
+      background-position: -752px -799px;
+    }
+
+    //表情
+    .icon-expression {
+      width              : 44px;
+      height             : 44px;
+      background-position: -444px -445px;
+    }
+
+    //收藏
+    .icon-collection {
+      width              : 44px;
+      height             : 42px;
+      background-position: -601px -968px;
+    }
+  }
 }
