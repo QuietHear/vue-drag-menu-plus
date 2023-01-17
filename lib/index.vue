@@ -4,7 +4,7 @@
 */
 /*
  * @LastEditors: aFei
- * @LastEditTime: 2023-01-12 17:06:07
+ * @LastEditTime: 2023-01-17 11:07:11
 */
 <template>
   <div :class="['vue-drag-menu-plus', isMove ? 'move-ing' : '']" ref="parentRef">
@@ -14,7 +14,8 @@
       top: item.top + 'px',
     }" :key="index" @mousedown="index === 0 && isPC ? moveBegin() : null"
       @touchstart="index === 0 && !isPC ? moveBegin() : null" @click="index !== 0 && !isMove ? showMenu(index) : null">
-      <el-icon v-if="item.icon.split('/')[0] === 'el'">
+      <component :is="item.customIcon" v-if="item.customIcon" />
+      <el-icon v-else-if="item.icon.split('/')[0] === 'el'">
         <component :is="item.icon.split('/')[1]" />
       </el-icon>
       <i :class="['icon iconfont', 'icon-' + item.icon.split('/')[1]]"
@@ -26,7 +27,7 @@
   </div>
 </template>
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from "vue";
+import { ref, onMounted, onBeforeUnmount, nextTick, watch } from "vue";
 const emit = defineEmits(["click"]);
 const props = defineProps({
   // 按钮数据
@@ -346,7 +347,7 @@ const toRight = () => {
 };
 // 展示\收起菜单
 const showMenu = (index = 0) => {
-  emit("click", props.list[index]);
+  emit("click", props.list[index], index);
   if (index === 0 || props.closeOnClick) {
     // 距离边界的横纵坐标和距离
     let dealX, dealY, x, y;
@@ -498,7 +499,6 @@ const moveBegin = () => {
       WINDOWHEIGHT.value / 2 -
       _first.value.offsetTop;
   }
-  console.log();
   beginX.value = _first.value.offsetLeft;
   beginY.value = _first.value.offsetTop;
   moveXMin.value = clickX.value;
@@ -582,15 +582,7 @@ const moveEnd = () => {
     isMove.value = false;
   }, 600);
 };
-onMounted(() => {
-  if (menuList.value.length > 0) {
-    _first.value = findByClass(parentRef.value, "menu-item")[0];
-    ITEMWIDTH.value = _first.value.offsetWidth;
-    ITEMHEIGHT.value = _first.value.offsetHeight;
-    dealMax();
-    window.addEventListener("resize", dealMax);
-  }
-});
+// 移除监听
 onBeforeUnmount(() => {
   window.removeEventListener("resize", dealMax);
   if (isPC.value) {
@@ -601,19 +593,45 @@ onBeforeUnmount(() => {
     window.removeEventListener("touchend", moveEnd);
   }
 });
-let linCopy = JSON.parse(JSON.stringify(props.list));
-menuList.value = linCopy.map((item, index) => {
-  item.left = 0;
-  item.top = 0;
-  item.style.zIndex = props.list.length + 1 - index;
-  return { ...item };
-});
+// 处理监听数据
+const dealWatch = () => {
+  if (menuList.value.length > 0) {
+    _first.value = findByClass(parentRef.value, "menu-item")[0];
+    ITEMWIDTH.value = _first.value.offsetWidth;
+    ITEMHEIGHT.value = _first.value.offsetHeight;
+    dealMax();
+    window.addEventListener("resize", dealMax);
+  }
+};
+// 初始化
+const init = () => {
+  menuList.value = props.list.map((item, index) => {
+    item.left = 0;
+    item.top = 0;
+    item.style.zIndex = props.list.length + 1 - index;
+    return { ...item };
+  });
+  if (parentRef.value) {
+    nextTick(() => {
+      dealWatch();
+    })
+  } else {
+    onMounted(() => {
+      dealWatch();
+    });
+  }
+};
 if (
   /Android|webOS|iPhone|iPod|BlackBerry/i.test(window.navigator.userAgent)
 ) {
   isPC.value = false;
 }
-console.log(menuList.value);
+watch(() => props.list,
+  () => {
+    init();
+  }
+);
+init();
 </script>
 <style lang="scss">
 @use "style/index.scss" as *;

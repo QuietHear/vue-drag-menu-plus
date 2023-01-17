@@ -4,11 +4,12 @@
 */
 /*
  * @LastEditors: aFei
- * @LastEditTime: 2022-11-29 18:00:49
+ * @LastEditTime: 2023-01-17 11:07:02
 */
 .vue-drag-menu-plus {
   --menu-item-width : 60px;
   --menu-item-height: 60px;
+  --menu-item-size  : 46px;
   position          : fixed;
   margin            : auto;
   left              : 0;
@@ -37,6 +38,7 @@
   .menu-item {
     width          : var(--menu-item-width);
     height         : var(--menu-item-height);
+    font-size      : var(--menu-item-size);
     display        : flex;
     justify-content: center;
     align-items    : center;
