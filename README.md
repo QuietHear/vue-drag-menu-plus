@@ -21,18 +21,63 @@
 
 
 ## 1. 参数
-* `list`：按钮数据-->Array;非必传;默认*[{icon:'icon-insert icon-setting',title:'菜单',style:{background:'#fff',color:''}},{icon:'icon-insert icon-myCenter',style:{background:'rgb(255, 92, 92)'}},{icon:'icon-insert icon-notice',style:{background:'rgb(92, 209, 255)'}},{icon:'icon-insert icon-expression',style:{background:'rgb(255, 241, 92)'}},{icon:'icon-insert icon-collection',style:{background:'rgb(100, 245, 146)'}}]*
+* `list`：按钮数据-->Array;非必传;默认如下
 >
+	// 默认值
+	   [
+        {
+          icon: {
+            type: "icon-insert icon-setting"
+          },
+          title: "菜单",
+          style: {
+            background: "#fff",
+            color: "",
+          },
+        },
+        {
+          icon: {
+            type: "icon-insert icon-myCenter"
+          },
+          style: {
+            background: "rgb(255, 92, 92)",
+          },
+        },
+        {
+          icon: {
+            type: "icon-insert icon-notice"
+          },
+          style: {
+            background: "rgb(92, 209, 255)",
+          },
+        },
+        {
+          icon: {
+            type: "icon-insert icon-expression"
+          },
+          style: {
+            background: "rgb(255, 241, 92)",
+          },
+        },
+        {
+          icon: {
+            type: "icon-insert icon-collection"
+          },
+          style: {
+            background: "rgb(100, 245, 146)",
+          },
+        },
+      ]
 	// 配置项说明
 	style:'' // 按钮容器的内联样式
 	title:'' // 按钮鼠标放上显示文字
-	customIcon:<Component> // 自定义组件，优先级高于icon
-	icon:'' // 按钮内图标
+	icon:{} // 按钮内图标
 	//
-	// 按钮名分为前后两部分，用/分隔，有以下三种情况
-	// el/xxx，此时为el-icon,xxx为图标组件名（！！！未内置）
-	// iconfont/xxx，此时为iconfont，xxx为图标去掉icon-后部分（！！！未内置）
-	// xx/xx，此时为本地自定义图标，前半部分为class，后半部分为内容
+	// type的值，有以下四种情况：
+	// custom，此时为自定义组件,icon为组件对象
+	// el，此时为el-icon,icon为图标组件名（！！！未内置）
+	// iconfont，此时为iconfont，icon为图标去掉icon-后部分（！！！未内置）
+	// 其他，此时为本地自定义图标，type为class，icon为内容
 >
 
 * `closeOnClick`：非第一个的按钮点击时是否需要收起菜单-->Boolean;非必传;默认*true*

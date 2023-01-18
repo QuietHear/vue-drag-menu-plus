@@ -4,7 +4,7 @@
 */
 /*
  * @LastEditors: aFei
- * @LastEditTime: 2023-01-17 11:07:11
+ * @LastEditTime: 2023-01-18 11:06:24
 */
 <template>
   <div :class="['vue-drag-menu-plus', isMove ? 'move-ing' : '']" ref="parentRef">
@@ -14,15 +14,16 @@
       top: item.top + 'px',
     }" :key="index" @mousedown="index === 0 && isPC ? moveBegin() : null"
       @touchstart="index === 0 && !isPC ? moveBegin() : null" @click="index !== 0 && !isMove ? showMenu(index) : null">
-      <component :is="item.customIcon" v-if="item.customIcon" />
-      <el-icon v-else-if="item.icon.split('/')[0] === 'el'">
-        <component :is="item.icon.split('/')[1]" />
-      </el-icon>
-      <i :class="['icon iconfont', 'icon-' + item.icon.split('/')[1]]"
-        v-else-if="item.icon.split('/')[0] === 'iconfont'" />
-      <i :class="item.icon.split('/')[0]" v-else>
-        {{ item.icon.split("/")[1] }}
-      </i>
+      <template v-if="item.icon && (item.icon.icon || item.icon.type)">
+        <component :is="item.icon.icon" v-if="item.icon.type === 'custom'" />
+        <el-icon v-else-if="item.icon.type === 'el'">
+          <component :is="item.icon.icon" />
+        </el-icon>
+        <i :class="['icon iconfont', 'icon-' + item.icon.icon]" v-else-if="item.icon.type === 'iconfont'" />
+        <i :class="item.icon.type" v-else>
+          {{ item.icon.icon }}
+        </i>
+      </template>
     </div>
   </div>
 </template>
@@ -36,7 +37,9 @@ const props = defineProps({
     default: () => {
       return [
         {
-          icon: "icon-insert icon-setting",
+          icon: {
+            type: "icon-insert icon-setting"
+          },
           title: "菜单",
           style: {
             background: "#fff",
@@ -44,25 +47,33 @@ const props = defineProps({
           },
         },
         {
-          icon: "icon-insert icon-myCenter",
+          icon: {
+            type: "icon-insert icon-myCenter"
+          },
           style: {
             background: "rgb(255, 92, 92)",
           },
         },
         {
-          icon: "icon-insert icon-notice",
+          icon: {
+            type: "icon-insert icon-notice"
+          },
           style: {
             background: "rgb(92, 209, 255)",
           },
         },
         {
-          icon: "icon-insert icon-expression",
+          icon: {
+            type: "icon-insert icon-expression"
+          },
           style: {
             background: "rgb(255, 241, 92)",
           },
         },
         {
-          icon: "icon-insert icon-collection",
+          icon: {
+            type: "icon-insert icon-collection"
+          },
           style: {
             background: "rgb(100, 245, 146)",
           },
