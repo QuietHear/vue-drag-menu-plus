@@ -4,7 +4,7 @@
 */
 /*
  * @LastEditors: aFei
- * @LastEditTime: 2023-01-18 11:06:24
+ * @LastEditTime: 2023-01-18 17:09:59
 */
 <template>
   <div :class="['vue-drag-menu-plus', isMove ? 'move-ing' : '']" ref="parentRef">
@@ -15,12 +15,12 @@
     }" :key="index" @mousedown="index === 0 && isPC ? moveBegin() : null"
       @touchstart="index === 0 && !isPC ? moveBegin() : null" @click="index !== 0 && !isMove ? showMenu(index) : null">
       <template v-if="item.icon && (item.icon.icon || item.icon.type)">
-        <component :is="item.icon.icon" v-if="item.icon.type === 'custom'" />
-        <el-icon v-else-if="item.icon.type === 'el'">
+        <component :is="item.icon.icon" v-bind="item.icon.attrs" v-if="item.icon.type === 'custom'" />
+        <el-icon v-bind="item.icon.attrs" v-else-if="item.icon.type === 'el'">
           <component :is="item.icon.icon" />
         </el-icon>
-        <i :class="['icon iconfont', 'icon-' + item.icon.icon]" v-else-if="item.icon.type === 'iconfont'" />
-        <i :class="item.icon.type" v-else>
+        <i :class="['icon iconfont', 'icon-' + item.icon.icon]" v-bind="item.icon.attrs" v-else-if="item.icon.type === 'iconfont'" />
+        <i :class="item.icon.type" v-bind="item.icon.attrs" v-else>
           {{ item.icon.icon }}
         </i>
       </template>
