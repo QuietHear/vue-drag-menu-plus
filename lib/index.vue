@@ -4,7 +4,7 @@
 */
 /*
  * @LastEditors: aFei
- * @LastEditTime: 2023-01-18 17:09:59
+ * @LastEditTime: 2023-02-20 14:35:53
 */
 <template>
   <div :class="['vue-drag-menu-plus', isMove ? 'move-ing' : '']" ref="parentRef">
@@ -28,7 +28,6 @@
   </div>
 </template>
 <script setup>
-import { ref, onMounted, onBeforeUnmount, nextTick, watch } from "vue";
 const emit = defineEmits(["click"]);
 const props = defineProps({
   // 按钮数据
