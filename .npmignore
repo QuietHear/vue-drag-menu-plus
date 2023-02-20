@@ -3,7 +3,8 @@ node_modules/
 npm-debug.log
 yarn-error.log
 src/lang/
-.idea
+.idea/
+.vscode/
 *.suo
 *.ntvs*
 *.njsproj
