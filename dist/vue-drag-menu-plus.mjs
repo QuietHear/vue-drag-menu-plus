@@ -1,7 +1,34 @@
-import { ref as u, onBeforeUnmount as he, watch as ge, resolveComponent as ye, openBlock as d, createElementBlock as M, normalizeClass as Te, unref as N, Fragment as ce, renderList as Ee, normalizeStyle as ke, createBlock as j, resolveDynamicComponent as fe, normalizeProps as re, mergeProps as z, withCtx as Ie, toDisplayString as me, createCommentVNode as He, nextTick as Le, onMounted as We } from "vue";
-const Me = ["title", "onMousedown", "onTouchstart", "onClick"], _e = {
+import { resolveComponent as he, openBlock as p, createBlock as _, resolveDynamicComponent as ce, normalizeProps as fe, mergeProps as G, withCtx as pe, createElementBlock as A, toDisplayString as ge, ref as a, onBeforeUnmount as ye, watch as Te, normalizeClass as Ee, unref as Y, Fragment as me, renderList as be, normalizeStyle as ke, createCommentVNode as Ie, nextTick as Oe, onMounted as He } from "vue";
+const Le = {
+  __name: "icon",
+  props: {
+    iconObj: {
+      type: Object,
+      requured: !0
+    }
+  },
+  setup(c) {
+    return (N, I) => {
+      const f = he("el-icon");
+      return c.iconObj.type === "custom" ? (p(), _(ce(c.iconObj.icon), fe(G({ key: 0 }, c.iconObj.attrs)), null, 16)) : c.iconObj.type === "el" ? (p(), _(f, fe(G({ key: 1 }, c.iconObj.attrs)), {
+        default: pe(() => [
+          (p(), _(ce(c.iconObj.icon)))
+        ]),
+        _: 1
+      }, 16)) : c.iconObj.type === "iconfont" ? (p(), A("i", G({
+        key: 2,
+        class: ["icon iconfont", "icon-" + c.iconObj.icon]
+      }, c.iconObj.attrs), null, 16)) : (p(), A("i", G({
+        key: 3,
+        class: c.iconObj.type
+      }, c.iconObj.attrs), ge(c.iconObj.icon), 17));
+    };
+  }
+};
+const We = ["title", "onMousedown", "onTouchstart", "onClick"], Me = {
   __name: "index",
   props: {
+    // 按钮数据
     list: {
       type: Array,
       default: () => [
@@ -9,7 +36,7 @@ const Me = ["title", "onMousedown", "onTouchstart", "onClick"], _e = {
           icon: {
             type: "icon-insert icon-setting"
           },
-          title: "\u83DC\u5355",
+          title: "菜单",
           style: {
             background: "#fff",
             color: ""
@@ -49,235 +76,223 @@ const Me = ["title", "onMousedown", "onTouchstart", "onClick"], _e = {
         }
       ]
     },
+    // 非第一个的按钮点击时是否需要收起菜单
     closeOnClick: {
       type: Boolean,
       default: !0
     }
   },
   emits: ["click"],
-  setup(F, { emit: G }) {
-    const _ = F;
-    let w = u([]), C = u(null), p = u(null), h = u(null), g = u(null), b = u(null), B = u(6), o = u(10), T = u(null), E = u(null), m = u(null), H = u(null), O = u(null), S = u(null), k = u(null), I = u(null), R = u(!1), V = u(null), $ = u(null), D = u(null), X = u(null), Y = u(null), J = u(null), K = u(null), A = u(null), Q = u(null), Z = u(null), c = u(!1), y = u(!0), v = u([]), f = u(null), r = u(null);
-    const we = (e, l) => e.classList ? e.classList.contains(l) : new RegExp("\\s" + l + "\\s").test(" " + e.className + " "), pe = (e, l) => {
-      let i = [], a = (t) => {
-        t.forEach((s) => {
-          we(s, l) && i.push(s), s.childNodes && s.childNodes.length > 0 && a(s.childNodes);
+  setup(c, { emit: N }) {
+    const I = c;
+    let f = a([]), M = a(null), h = a(null), g = a(null), y = a(null), B = a(null), S = a(6), o = a(10), E = a(null), m = a(null), O = a(null), H = a(null), R = a(null), P = a(null), b = a(null), k = a(null), x = a(!1), V = a(null), $ = a(null), C = a(null), j = a(null), D = a(null), J = a(null), K = a(null), X = a(null), Q = a(null), Z = a(null), r = a(!1), T = a(!0), s = a([]), w = a(null), d = a(null);
+    const re = (e, l) => e.classList ? e.classList.contains(l) : new RegExp("\\s" + l + "\\s").test(" " + e.className + " "), we = (e, l) => {
+      let t = [], n = (v) => {
+        v.forEach((i) => {
+          re(i, l) && t.push(i), i.childNodes && i.childNodes.length > 0 && n(i.childNodes);
         });
       };
-      return a(e.childNodes), i;
-    }, n = (e, l, i) => new Promise((a, t) => {
+      return n(e.childNodes), t;
+    }, u = (e, l, t) => new Promise((n, v) => {
       setTimeout(() => {
-        for (const s in l)
-          e[s] = l[s];
-        a();
-      }, i);
+        for (const i in l)
+          e[i] = l[i];
+        n();
+      }, t);
     }), ee = () => {
-      w.value.forEach(async (e, l) => {
-        l > 0 && (c.value ? (await n(
+      f.value.forEach(async (e, l) => {
+        l > 0 && (r.value ? (await u(
           e,
-          { top: r.value + o.value },
+          { top: d.value + o.value },
           40
-        ), await n(
+        ), await u(
           e,
-          { top: r.value - o.value },
+          { top: d.value - o.value },
           80
-        ), await n(e, { top: r.value }, 50)) : (await n(
+        ), await u(e, { top: d.value }, 50)) : (await u(
           e,
           {
-            top: r.value - (l * (g.value + o.value) + o.value)
+            top: d.value - (l * (y.value + o.value) + o.value)
           },
           40
-        ), await n(
+        ), await u(
           e,
           {
-            top: r.value - l * (g.value + o.value)
+            top: d.value - l * (y.value + o.value)
           },
           100
         )));
-      }), c.value = !c.value;
+      }), r.value = !r.value;
     }, le = () => {
-      w.value.forEach(async (e, l) => {
-        l > 0 && (c.value ? (await n(
+      f.value.forEach(async (e, l) => {
+        l > 0 && (r.value ? (await u(
           e,
-          { top: r.value - o.value },
+          { top: d.value - o.value },
           40
-        ), await n(
+        ), await u(
           e,
-          { top: r.value + o.value },
+          { top: d.value + o.value },
           80
-        ), await n(e, { top: r.value }, 50)) : (await n(
+        ), await u(e, { top: d.value }, 50)) : (await u(
           e,
           {
-            top: r.value + (l * (g.value + o.value) + o.value)
+            top: d.value + (l * (y.value + o.value) + o.value)
           },
           40
-        ), await n(
+        ), await u(
           e,
           {
-            top: r.value + l * (g.value + o.value)
+            top: d.value + l * (y.value + o.value)
           },
           100
         )));
-      }), c.value = !c.value;
+      }), r.value = !r.value;
     }, ae = () => {
-      w.value.forEach(async (e, l) => {
-        l > 0 && (c.value ? (await n(
+      f.value.forEach(async (e, l) => {
+        l > 0 && (r.value ? (await u(
           e,
-          { left: f.value + o.value },
+          { left: w.value + o.value },
           40
-        ), await n(
+        ), await u(
           e,
-          { left: f.value - o.value },
+          { left: w.value - o.value },
           80
-        ), await n(e, { left: f.value }, 50)) : (await n(
+        ), await u(e, { left: w.value }, 50)) : (await u(
           e,
           {
-            left: f.value - (l * (h.value + o.value) + o.value)
+            left: w.value - (l * (g.value + o.value) + o.value)
           },
           40
-        ), await n(
+        ), await u(
           e,
           {
-            left: f.value - l * (h.value + o.value)
+            left: w.value - l * (g.value + o.value)
           },
           100
         )));
-      }), c.value = !c.value;
-    }, ue = () => {
-      w.value.forEach(async (e, l) => {
-        l > 0 && (c.value ? (await n(
-          e,
-          { left: f.value - o.value },
-          40
-        ), await n(
-          e,
-          { left: f.value + o.value },
-          80
-        ), await n(e, { left: f.value }, 50)) : (await n(
-          e,
-          {
-            left: f.value + (l * (h.value + o.value) + o.value)
-          },
-          40
-        ), await n(
-          e,
-          {
-            left: f.value + l * (h.value + o.value)
-          },
-          100
-        )));
-      }), c.value = !c.value;
-    }, q = (e = 0) => {
-      if (G("click", _.list[e], e), e === 0 || _.closeOnClick) {
-        let l, i, a, t;
-        l = p.value.offsetLeft, i = p.value.offsetTop, l > 0 ? i < 0 ? (a = T.value / 2 - l - h.value, t = E.value / 2 + i, a + 10 < t ? ae() : le()) : (a = T.value / 2 - l - h.value, t = E.value / 2 - i - g.value, a + 10 < t ? ae() : ee()) : i < 0 ? (a = T.value / 2 + l, t = E.value / 2 + i, a + 10 < t ? ue() : le()) : (a = T.value / 2 + l, t = E.value / 2 - i - g.value, a + 10 < t ? ue() : ee());
-      }
+      }), r.value = !r.value;
     }, te = () => {
-      c.value && q(0);
+      f.value.forEach(async (e, l) => {
+        l > 0 && (r.value ? (await u(
+          e,
+          { left: w.value - o.value },
+          40
+        ), await u(
+          e,
+          { left: w.value + o.value },
+          80
+        ), await u(e, { left: w.value }, 50)) : (await u(
+          e,
+          {
+            left: w.value + (l * (g.value + o.value) + o.value)
+          },
+          40
+        ), await u(
+          e,
+          {
+            left: w.value + l * (g.value + o.value)
+          },
+          100
+        )));
+      }), r.value = !r.value;
+    }, q = (e = 0) => {
+      if (N("click", I.list[e], e), e === 0 || I.closeOnClick) {
+        let l, t, n, v;
+        l = h.value.offsetLeft, t = h.value.offsetTop, l > 0 ? t < 0 ? (n = E.value / 2 - l - g.value, v = m.value / 2 + t, n + 10 < v ? ae() : le()) : (n = E.value / 2 - l - g.value, v = m.value / 2 - t - y.value, n + 10 < v ? ae() : ee()) : t < 0 ? (n = E.value / 2 + l, v = m.value / 2 + t, n + 10 < v ? te() : le()) : (n = E.value / 2 + l, v = m.value / 2 - t - y.value, n + 10 < v ? te() : ee());
+      }
+    }, ue = () => {
+      r.value && q(0);
     }, U = () => {
-      te(), T.value = window.innerWidth, E.value = window.innerHeight, O.value = T.value - h.value, S.value = E.value - g.value, m.value = C.value.offsetLeft, H.value = C.value.offsetTop, k.value = O.value - m.value - 10, I.value = S.value - H.value - 10, w.value.forEach((e) => {
-        e.left = k.value, e.top = I.value;
+      ue(), E.value = window.innerWidth, m.value = window.innerHeight, R.value = E.value - g.value, P.value = m.value - y.value, O.value = M.value.offsetLeft, H.value = M.value.offsetTop, b.value = R.value - O.value - 10, k.value = P.value - H.value - 10, f.value.forEach((e) => {
+        e.left = b.value, e.top = k.value;
       });
     }, de = () => {
-      if (v.value.length > 1) {
-        let e, l, i = v.value[v.value.length - 2].x, a = v.value[v.value.length - 2].y, t = v.value[v.value.length - 1].x, s = v.value[v.value.length - 1].y, P = Math.abs(t - i), se = Math.abs(s - a);
-        P === 0 ? (e = 0, l = o.value) : (e = Math.sqrt(
-          Math.pow(o.value, 2) * Math.pow(P, 2) / (Math.pow(P, 2) + Math.pow(se, 2))
-        ), l = e * se / P), w.value.forEach((x, ie) => {
+      if (s.value.length > 1) {
+        let e, l, t = s.value[s.value.length - 2].x, n = s.value[s.value.length - 2].y, v = s.value[s.value.length - 1].x, i = s.value[s.value.length - 1].y, z = Math.abs(v - t), se = Math.abs(i - n);
+        z === 0 ? (e = 0, l = o.value) : (e = Math.sqrt(
+          Math.pow(o.value, 2) * Math.pow(z, 2) / (Math.pow(z, 2) + Math.pow(se, 2))
+        ), l = e * se / z), f.value.forEach((F, ie) => {
           ie > 0 && setTimeout(async () => {
-            await n(x, { left: i, top: a }, 50), await n(
-              x,
+            await u(F, { left: t, top: n }, 50), await u(
+              F,
               {
-                left: t > i ? t + e : t - e,
-                top: s > a ? s + l : s - l
+                left: v > t ? v + e : v - e,
+                top: i > n ? i + l : i - l
               },
               50
-            ), await n(
-              x,
+            ), await u(
+              F,
               {
-                left: t > i ? t - e : t + e,
-                top: s > a ? s - l : s + l
+                left: v > t ? v - e : v + e,
+                top: i > n ? i - l : i + l
               },
               100
-            ), await n(x, { left: t, top: s }, 50);
+            ), await u(F, { left: v, top: i }, 50);
           }, ie * 120);
         });
       }
-      v = [];
+      s = [];
     }, ne = () => {
-      y.value ? (D.value = event.offsetX, X.value = event.offsetY) : (D.value = event.changedTouches[0].clientX - T.value / 2 - p.value.offsetLeft, X.value = event.changedTouches[0].clientY - E.value / 2 - p.value.offsetTop), V.value = p.value.offsetLeft, $.value = p.value.offsetTop, J.value = D.value, K.value = O.value + D.value, Q.value = X.value, Z.value = S.value + X.value, v.value = [], k.value = V.value - m.value, I.value = $.value - H.value, R.value = !0, y.value ? (window.addEventListener("mousemove", L), window.addEventListener("mouseup", W)) : (window.addEventListener("touchmove", L), window.addEventListener("touchend", W));
+      T.value ? (C.value = event.offsetX, j.value = event.offsetY) : (C.value = event.changedTouches[0].clientX - E.value / 2 - h.value.offsetLeft, j.value = event.changedTouches[0].clientY - m.value / 2 - h.value.offsetTop), V.value = h.value.offsetLeft, $.value = h.value.offsetTop, J.value = C.value, K.value = R.value + C.value, Q.value = j.value, Z.value = P.value + j.value, s.value = [], b.value = V.value - O.value, k.value = $.value - H.value, x.value = !0, T.value ? (window.addEventListener("mousemove", L), window.addEventListener("mouseup", W)) : (window.addEventListener("touchmove", L), window.addEventListener("touchend", W));
     }, L = () => {
-      te(), y.value ? (Y.value = event.clientX, A.value = event.clientY) : (Y.value = event.changedTouches[0].clientX, A.value = event.changedTouches[0].clientY), Y.value < J.value ? k.value = 0 - m.value : Y.value > K.value ? k.value = O.value - m.value : k.value = Y.value - m.value - D.value, A.value < Q.value ? I.value = 0 - H.value : A.value > Z.value ? I.value = S.value - H.value : I.value = A.value - H.value - X.value, v.value.push({ x: k.value, y: I.value }), w.value.forEach((e, l) => {
-        v.value.length > 1 && v.value.length > l * B.value && (e.left = v.value[v.value.length - 1 - B.value * l].x, e.top = v.value[v.value.length - 1 - B.value * l].y);
-      }), v.value.length > B.value * (w.value.length - 1) + 1 && v.value.shift(), (b.value !== null || b.value !== void 0) && clearTimeout(b.value), b.value = setTimeout(de, 500);
+      ue(), T.value ? (D.value = event.clientX, X.value = event.clientY) : (D.value = event.changedTouches[0].clientX, X.value = event.changedTouches[0].clientY), D.value < J.value ? b.value = 0 - O.value : D.value > K.value ? b.value = R.value - O.value : b.value = D.value - O.value - C.value, X.value < Q.value ? k.value = 0 - H.value : X.value > Z.value ? k.value = P.value - H.value : k.value = X.value - H.value - j.value, s.value.push({ x: b.value, y: k.value }), f.value.forEach((e, l) => {
+        s.value.length > 1 && s.value.length > l * S.value && (e.left = s.value[s.value.length - 1 - S.value * l].x, e.top = s.value[s.value.length - 1 - S.value * l].y);
+      }), s.value.length > S.value * (f.value.length - 1) + 1 && s.value.shift(), (B.value !== null || B.value !== void 0) && clearTimeout(B.value), B.value = setTimeout(de, 500);
     }, W = () => {
-      f.value = p.value.offsetLeft, r.value = p.value.offsetTop, y.value ? (window.removeEventListener("mousemove", L), window.removeEventListener("mouseup", W)) : (window.removeEventListener("touchmove", L), window.removeEventListener("touchend", W)), V.value === f.value && $.value === r.value && q(), setTimeout(() => {
-        R.value = !1;
+      w.value = h.value.offsetLeft, d.value = h.value.offsetTop, T.value ? (window.removeEventListener("mousemove", L), window.removeEventListener("mouseup", W)) : (window.removeEventListener("touchmove", L), window.removeEventListener("touchend", W)), V.value === w.value && $.value === d.value && q(), setTimeout(() => {
+        x.value = !1;
       }, 600);
     };
-    he(() => {
-      window.removeEventListener("resize", U), y.value ? (window.removeEventListener("mousemove", L), window.removeEventListener("mouseup", W)) : (window.removeEventListener("touchmove", L), window.removeEventListener("touchend", W));
+    ye(() => {
+      window.removeEventListener("resize", U), T.value ? (window.removeEventListener("mousemove", L), window.removeEventListener("mouseup", W)) : (window.removeEventListener("touchmove", L), window.removeEventListener("touchend", W));
     });
-    const oe = () => {
-      w.value.length > 0 && (p.value = pe(C.value, "menu-item")[0], h.value = p.value.offsetWidth, g.value = p.value.offsetHeight, U(), window.addEventListener("resize", U));
-    }, ve = () => {
-      w.value = _.list.map((e, l) => (e.left = 0, e.top = 0, e.style.zIndex = _.list.length + 1 - l, { ...e })), C.value ? Le(() => {
-        oe();
-      }) : We(() => {
-        oe();
+    const ve = () => {
+      f.value.length > 0 && (h.value = we(M.value, "menu-item")[0], g.value = h.value.offsetWidth, y.value = h.value.offsetHeight, U(), window.addEventListener("resize", U));
+    }, oe = () => {
+      f.value = I.list.map((e, l) => (e.left = 0, e.top = 0, e.style.zIndex = I.list.length + 1 - l, { ...e })), M.value ? Oe(() => {
+        ve();
+      }) : He(() => {
+        ve();
       });
     };
-    return /Android|webOS|iPhone|iPod|BlackBerry/i.test(window.navigator.userAgent) && (y.value = !1), ge(
-      () => _.list,
+    return /Android|webOS|iPhone|iPod|BlackBerry/i.test(window.navigator.userAgent) && (T.value = !1), Te(
+      () => I.list,
       () => {
-        ve();
+        oe();
       }
-    ), ve(), (e, l) => {
-      const i = ye("el-icon");
-      return d(), M("div", {
-        class: Te(["vue-drag-menu-plus", N(R) ? "move-ing" : ""]),
-        ref_key: "parentRef",
-        ref: C
+    ), oe(), (e, l) => (p(), A("div", {
+      class: Ee(["vue-drag-menu-plus", Y(x) ? "move-ing" : ""]),
+      ref_key: "parentRef",
+      ref: M
+    }, [
+      (p(!0), A(me, null, be(Y(f), (t, n) => (p(), A("div", {
+        class: "menu-item",
+        title: t.title,
+        style: ke({
+          ...t.style,
+          left: t.left + "px",
+          top: t.top + "px"
+        }),
+        key: n,
+        onMousedown: (v) => n === 0 && Y(T) ? ne() : null,
+        onTouchstart: (v) => n === 0 && !Y(T) ? ne() : null,
+        onClick: (v) => n !== 0 && !Y(x) ? q(n) : null
       }, [
-        (d(!0), M(ce, null, Ee(N(w), (a, t) => (d(), M("div", {
-          class: "menu-item",
-          title: a.title,
-          style: ke({
-            ...a.style,
-            left: a.left + "px",
-            top: a.top + "px"
-          }),
-          key: t,
-          onMousedown: (s) => t === 0 && N(y) ? ne() : null,
-          onTouchstart: (s) => t === 0 && !N(y) ? ne() : null,
-          onClick: (s) => t !== 0 && !N(R) ? q(t) : null
-        }, [
-          a.icon && (a.icon.icon || a.icon.type) ? (d(), M(ce, { key: 0 }, [
-            a.icon.type === "custom" ? (d(), j(fe(a.icon.icon), re(z({ key: 0 }, a.icon.attrs)), null, 16)) : a.icon.type === "el" ? (d(), j(i, re(z({ key: 1 }, a.icon.attrs)), {
-              default: Ie(() => [
-                (d(), j(fe(a.icon.icon)))
-              ]),
-              _: 2
-            }, 1040)) : a.icon.type === "iconfont" ? (d(), M("i", z({
-              key: 2,
-              class: ["icon iconfont", "icon-" + a.icon.icon]
-            }, a.icon.attrs), null, 16)) : (d(), M("i", z({
-              key: 3,
-              class: a.icon.type
-            }, a.icon.attrs), me(a.icon.icon), 17))
-          ], 64)) : He("", !0)
-        ], 44, Me))), 128))
-      ], 2);
-    };
+        t.icon && (t.icon.icon || t.icon.type) ? (p(), _(Le, {
+          key: 0,
+          iconObj: t.icon
+        }, null, 8, ["iconObj"])) : Ie("", !0)
+      ], 44, We))), 128))
+    ], 2));
   }
-}, Ce = [_e], De = {
-  install(F) {
-    Ce.forEach((G) => {
-      F.component("vueDragMenuPlus", G);
+}, Ce = [Me], je = {
+  install(c) {
+    Ce.forEach((N) => {
+      c.component("vueDragMenuPlus", N);
     });
   }
 };
-typeof window < "u" && window.Vue && window.Vue.use(De);
+typeof window < "u" && window.Vue && window.Vue.use(je);
 export {
-  De as default
+  je as default
 };

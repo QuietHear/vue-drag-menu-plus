@@ -4,7 +4,7 @@
 */
 /*
  * @LastEditors: aFei
- * @LastEditTime: 2023-02-20 14:35:53
+ * @LastEditTime: 2023-06-29 17:29:13
 */
 <template>
   <div :class="['vue-drag-menu-plus', isMove ? 'move-ing' : '']" ref="parentRef">
@@ -14,20 +14,12 @@
       top: item.top + 'px',
     }" :key="index" @mousedown="index === 0 && isPC ? moveBegin() : null"
       @touchstart="index === 0 && !isPC ? moveBegin() : null" @click="index !== 0 && !isMove ? showMenu(index) : null">
-      <template v-if="item.icon && (item.icon.icon || item.icon.type)">
-        <component :is="item.icon.icon" v-bind="item.icon.attrs" v-if="item.icon.type === 'custom'" />
-        <el-icon v-bind="item.icon.attrs" v-else-if="item.icon.type === 'el'">
-          <component :is="item.icon.icon" />
-        </el-icon>
-        <i :class="['icon iconfont', 'icon-' + item.icon.icon]" v-bind="item.icon.attrs" v-else-if="item.icon.type === 'iconfont'" />
-        <i :class="item.icon.type" v-bind="item.icon.attrs" v-else>
-          {{ item.icon.icon }}
-        </i>
-      </template>
+      <Icon :iconObj="item.icon" v-if="item.icon && (item.icon.icon || item.icon.type)" />
     </div>
   </div>
 </template>
 <script setup>
+import Icon from "./components/icon.vue";
 const emit = defineEmits(["click"]);
 const props = defineProps({
   // 按钮数据

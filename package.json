@@ -1,7 +1,7 @@
 {
   "name": "vue-drag-menu-plus",
   "description": "可拖拽菜单 vue3版",
-  "version": "1.2.2",
+  "version": "1.3.0",
   "author": "aFei <1106728884@qq.com>",
   "license": "MIT",
   "main": "dist/vue-drag-menu-plus.umd.js",
@@ -26,10 +26,10 @@
   "homepage": "https://github.com/QuietHear",
   "repository": "https://github.com/QuietHear/vue-drag-menu-plus",
   "devDependencies": {
-    "@vitejs/plugin-vue": "^3.2.0",
-    "sass": "^1.53.0",
-    "unplugin-auto-import": "^0.14.3",
-    "vite": "^3.2.3",
-    "vue": "^3.2.41"
+    "@vitejs/plugin-vue": "^4.2.3",
+    "sass": "^1.63.4",
+    "unplugin-auto-import": "^0.16.4",
+    "vite": "^4.3.9",
+    "vue": "^3.3.4"
   }
 }
