@@ -4,11 +4,11 @@
 */
 /*
  * @LastEditors: aFei
- * @LastEditTime: 2023-09-21 11:09:04
+ * @LastEditTime: 2023-09-21 13:17:29
 */
 <template>
   <div class="demo">
-    <vueDragMenuPlus @click="onClick" />
+    <vue-drag-menu-plus @click="onClick" />
   </div>
 </template>
 <script setup>
