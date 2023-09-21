@@ -4,7 +4,7 @@
 */
 /*
  * @LastEditors: aFei
- * @LastEditTime: 2023-09-21 10:47:59
+ * @LastEditTime: 2023-09-21 17:21:59
 */
 * {
   padding    : 0;
@@ -47,7 +47,8 @@ iframe {
 html,
 body,
 #app,
-.main {
+.main,
+.demo {
   height  : 100%;
   overflow: hidden;
 }

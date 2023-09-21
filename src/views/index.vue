@@ -4,11 +4,13 @@
 */
 /*
  * @LastEditors: aFei
- * @LastEditTime: 2023-09-21 13:17:29
+ * @LastEditTime: 2023-09-21 17:21:39
 */
 <template>
   <div class="demo">
-    <vue-drag-menu-plus @click="onClick" />
+    <el-scrollbar>
+      <vue-drag-menu-plus @click="onClick" />
+    </el-scrollbar>
   </div>
 </template>
 <script setup>
