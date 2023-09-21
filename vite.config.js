@@ -4,7 +4,7 @@
 */
 /*
  * @LastEditors: aFei
- * @LastEditTime: 2023-09-21 10:57:50
+ * @LastEditTime: 2023-09-21 13:26:43
 */
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
@@ -34,7 +34,7 @@ export default defineConfig(({ command, mode }) => ({
       fileName: "vue-drag-menu-plus",
     },
     rollupOptions: {
-      external: ["vue", "vue-router"],
+      external: ["vue", "vue-router", "element-plus"],
       output: {
         globals: {
           vue: "Vue",
