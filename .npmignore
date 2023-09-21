@@ -13,6 +13,8 @@ src/lang/
 *.html
 package-lock.json
 lib/
+src/
+index.html
 vite.config.js
 .babelrc
 .editorconfig

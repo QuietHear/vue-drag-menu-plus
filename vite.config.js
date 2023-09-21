@@ -4,7 +4,7 @@
 */
 /*
  * @LastEditors: aFei
- * @LastEditTime: 2023-02-20 14:35:33
+ * @LastEditTime: 2023-09-21 10:57:50
 */
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
@@ -12,6 +12,17 @@ import autoImport from "unplugin-auto-import/vite";
 import * as path from 'path';
 
 export default defineConfig(({ command, mode }) => ({
+  resolve: {
+    alias: {
+      '~': path.resolve(__dirname, './'),
+      '@': path.resolve(__dirname, './src'),
+      'asset': path.resolve(__dirname, './src/assets'),
+      'view': path.resolve(__dirname, './src/views'),
+    }
+  },
+  server: {
+    open: true
+  },
   esbuild: {
     drop: ['console', 'debugger']
   },
@@ -31,7 +42,7 @@ export default defineConfig(({ command, mode }) => ({
       },
     },
   },
-  plugins: [vue(), autoImport({ imports: ['vue', 'vue-router'], dts: false })],
+  plugins: [vue(), autoImport({ imports: ['vue', 'vue-router', { from: 'vue-router', imports: ['createRouter', 'createWebHistory'] }], dts: false })],
   css: {
     preprocessorOptions: {
       scss: {

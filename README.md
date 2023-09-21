@@ -1,6 +1,8 @@
 # 可拖拽菜单（vue3版）
 ***vue3版本*** | [**vue2版本**](https://github.com/QuietHear/vue-drag-menu '右键新窗口浏览')
 
+## 预览
+	clone项目后npm run preview即可
 
 ## 安装
 	npm i vue-drag-menu-plus
@@ -23,7 +25,7 @@
 ## 1. 参数
 * `list`：按钮数据-->Array;非必传;默认如下
 >
-	// 默认值
+	// 默认值，内置了一套按钮图片，可自行查看
 	   [
         {
           icon: {
@@ -84,10 +86,6 @@
 	// iconfont，此时为iconfont，icon为图标去掉icon-后部分（！！！未内置，确保当前页面或全局已引入）
 	// 其他，此时为本地自定义图标，type为class，icon为内容
 	//
-	"replaceIndex":false // 隐藏当前路由的名字，只会展示父级
-	"showBackBtn":true // 是否展示返回按钮，只有设置为true才展示
-	"parents":'第一个父级/第二个父级/xxx' // 将平级菜单转换为父子级，父级链用/分隔
-	"children":[] // 子菜单
 >
 
 * `closeOnClick`：非第一个的按钮点击时是否需要收起菜单-->Boolean;非必传;默认*true*
