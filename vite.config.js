@@ -4,10 +4,11 @@
 */
 /*
  * @LastEditors: aFei
- * @LastEditTime: 2023-09-21 13:26:43
+ * @LastEditTime: 2025-07-22 11:02:16
 */
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
+import vueDevTools from 'vite-plugin-vue-devtools';
 import autoImport from "unplugin-auto-import/vite";
 import * as path from 'path';
 
@@ -42,7 +43,7 @@ export default defineConfig(({ command, mode }) => ({
       },
     },
   },
-  plugins: [vue(), autoImport({ imports: ['vue', 'vue-router', { from: 'vue-router', imports: ['createRouter', 'createWebHistory'] }], dts: false })],
+  plugins: [vue(), vueDevTools(), autoImport({ imports: ['vue', 'vue-router', { from: 'vue-router', imports: ['createRouter', 'createWebHistory'] }], dts: false })],
   css: {
     preprocessorOptions: {
       scss: {
